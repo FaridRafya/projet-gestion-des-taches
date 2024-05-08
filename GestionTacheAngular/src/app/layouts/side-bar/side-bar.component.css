@@ -1,0 +1,11 @@
+.navbar-brand {
+  font-family: Arial, sans-serif; /* Choisir une police de caractères */
+  font-size: 1.2em; /* Taille du texte */
+  font-weight: bold; /* Gras */
+  color: #333; /* Couleur du texte */
+  text-decoration: none; /* Supprimer le soulignement du lien */
+}
+
+.navbar-brand:hover {
+  color: #555; /* Couleur du texte au survol */
+}
