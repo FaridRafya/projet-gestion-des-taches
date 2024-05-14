@@ -6,7 +6,7 @@ export interface ITask  {
   description?: string;
   dateCreated?: Date;
   dateFin?: Date;
-  finished?:boolean;
+  etatTask?:string;
   projet?: IProjet
 
 }
@@ -17,7 +17,7 @@ export class Task  implements ITask {
               public description?: string,
               public dateCreated?: Date,
               public dateFin?: Date,
-              public finished ?: boolean,
+              public etatTask ?: string,
               public projet ?: IProjet
 
   ) {}

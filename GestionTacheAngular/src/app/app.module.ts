@@ -10,8 +10,12 @@ import { ProjetComponent } from './projets/projet/projet.component';
 import {FooterComponent} from "./layouts/footer/footer.component";
 import { LoginComponent } from './public/login/login.component';
 import { RegisterComponent } from './public/register/register.component';
-import { AjouterTaskComponent } from './tasks/ajouter-task/ajouter-task.component';
 import { AjouterProjetComponent } from './projets/ajouter-projet/ajouter-projet.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import { AjouterComponent } from './tasks/ajouter/ajouter.component';
+import {HttpClientModule} from "@angular/common/http";
+import { DetailProjetComponent } from './projets/detail-projet/detail-projet.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -23,12 +27,15 @@ import { AjouterProjetComponent } from './projets/ajouter-projet/ajouter-projet.
     FooterComponent,
     LoginComponent,
     RegisterComponent,
-    AjouterTaskComponent,
-    AjouterProjetComponent
+    AjouterProjetComponent,
+    AjouterComponent,
+    DetailProjetComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

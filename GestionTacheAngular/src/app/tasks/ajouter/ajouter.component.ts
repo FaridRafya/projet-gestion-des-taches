@@ -3,15 +3,20 @@ import {TaskService} from "../service/task.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder} from "@angular/forms";
 import {ITask, Task} from "../task.model";
+import {ProjetService} from "../../projets/service/projet.service";
+import {EtatTask} from "../EtatTask";
 
 @Component({
-  selector: 'app-ajouter-task',
-  templateUrl: './ajouter-task.component.html',
-  styleUrls: ['./ajouter-task.component.css']
+  selector: 'app-ajouter',
+  templateUrl: './ajouter.component.html',
+  styleUrls: ['./ajouter.component.css']
 })
-export class AjouterTaskComponent implements  OnInit{
+export class AjouterComponent implements  OnInit{
 
 
+  id:any
+  data:any
+  etatTaskOptions = Object.values(EtatTask);
 
   editForm = this.fb.group({
     id: [],
@@ -19,26 +24,46 @@ export class AjouterTaskComponent implements  OnInit{
     description: [],
     dateCreated:  [],
     dateFin:  [],
-    finished: []
+    etatTask: [],
+    projet: [],
   });
 
 
 
   constructor(private taskService : TaskService,
+              protected projetService:ProjetService,
               protected activatedRoute: ActivatedRoute,
               protected fb: FormBuilder,
               protected router :Router
   ) {
   }
+
+  handlerSearchProjet() {
+    this.projetService.finda(this.id).subscribe(value => {
+        this.data = value;
+        this.editForm.patchValue({
+          projet: this.data,
+
+        });
+      }
+    )
+  } ;
   ngOnInit(): void {
+
+    this.activatedRoute.paramMap.subscribe(value => {
+      this.id = value.get('id');
+      this.handlerSearchProjet();
+
+    })
+
   }
 
 
-  save(): void {
+ save(): void {
     const task = this.createFromForm();
     this.taskService.create(task).subscribe({
 
-      next:()=>this.router.navigateByUrl("/task"),
+      next:()=>window.history.back(),
       error:()=> console.log("error")
     });
 
@@ -52,9 +77,10 @@ export class AjouterTaskComponent implements  OnInit{
       description: this.editForm.get(['description'])!.value,
       dateCreated: this.editForm.get(['dateCreated'])!.value,
       dateFin: this.editForm.get(['dateFin'])!.value,
-      finished: this.editForm.get(['finished'])!.value,
+      etatTask: this.editForm.get(['etatTask'])!.value,
+      projet: this.editForm.get(['projet'])!.value,
     };
   }
 
-
 }
+

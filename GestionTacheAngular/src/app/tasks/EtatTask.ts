@@ -1,0 +1,6 @@
+export enum EtatTask {
+  EN_COURS = 'EN_COURS',
+  EN_ATTENTE = 'EN_ATTENTE',
+  TERMINE = 'TERMINE',
+  LIVRAISON = 'LIVRAISON'
+}

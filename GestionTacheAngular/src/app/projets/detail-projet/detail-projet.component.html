@@ -1,0 +1,56 @@
+
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+    </div>
+  </div>
+</div>
+<div class="col-xl-12 order-xl-1">
+  <div class="card bg-secondary shadow">
+    <div class="card-header bg-white border-0">
+      <div class="row align-items-center">
+        <div class="col-8">
+          <h3 class="mb-0"> {{this.data.name}}</h3>
+        </div>
+        <div class="col-4 text-right">
+          <a [routerLink]="['/task/add',this.data.id]" class="btn btn-sm btn-primary">ajouter Task</a>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+        <h6 class="heading-small text-muted mb-4">listes des taches</h6>
+        <div class="col-xl-12 mb-5 mb-xl-0">
+          <div class="card shadow">
+
+            <div class="table-responsive">
+              <!-- Projects table -->
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                <tr>
+                  <th scope="col">name </th>
+                  <th scope="col">description </th>
+                  <th scope="col">date debut</th>
+                  <th scope="col">date fin</th>
+                  <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let task of this.data.tasks">
+                  <th  scope="row">{{task.name}}</th>
+                  <th  scope="row">{{task.description}}</th>
+                  <th  scope="row">{{task.dateCreated}}</th>
+                  <th  scope="row">{{task.dateFin}}</th>
+
+                </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      <h6 class="heading-small text-muted mb-4">listes des utilisateurs</h6>
+    </div>
+  </div>
+</div>

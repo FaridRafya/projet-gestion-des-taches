@@ -12,6 +12,9 @@
     <div class="col">
       <div class="card shadow">
         <div class="card-header border-0">
+          <button type="button" [routerLink]="['/projet/add']" class="btn btn-primary my-4">
+            ajouter Projet
+          </button>
           <h3 class="mb-0">Tables des projets </h3>
         </div>
         <div class="table-responsive">
@@ -25,48 +28,30 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
+            <tr *ngFor="let projet of projetSharedCollection">
               <th scope="row">
                 <div class="media align-items-center">
                   <a href="javascript:void(0)" class="avatar rounded-circle mr-3">
                     <img alt="Image placeholder" src="../assets/img/theme/bootstrap.jpg">
                   </a>
                   <div class="media-body">
-                    <span class="mb-0 text-sm">projet 01 </span>
+                    <span class="mb-0 text-sm">projet  </span>
                   </div>
                 </div>
               </th>
               <td>
-                 gestion des taches
+                {{projet.name}}
               </td>
               <td>
                   <span class="badge badge-dot mr-4">
-                    <i class="bg-warning"></i> projet qui permet de gestionner les taches
+                    <i class="bg-warning"></i>  {{projet.description}}
                   </span>
               </td>
-
-            </tr>
-            <tr>
-              <th scope="row">
-                <div class="media align-items-center">
-                  <a href="javascript:void(0)" class="avatar rounded-circle mr-3">
-                    <img alt="Image placeholder" src="../assets/img/theme/bootstrap.jpg">
-                  </a>
-                  <div class="media-body">
-                    <span class="mb-0 text-sm">projet 02 </span>
-                  </div>
-                </div>
-              </th>
               <td>
-                gestion de stock
+                <a [routerLink]="['/projet', projet.id]" class="btn btn-sm btn-info">Détail</a>
               </td>
-              <td>
-                  <span class="badge badge-dot mr-4">
-                    <i class="bg-warning"></i> gerer le stock
-                  </span>
-              </td>
-
             </tr>
+
 
             </tbody>
           </table>
