@@ -1,5 +1,6 @@
 package com.gestiontache.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -17,10 +18,18 @@ public class Task implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated;
     private Date dateFin;
-    private boolean finished;
+
+    @Enumerated(EnumType.STRING)
+    private EtatTask etatTask;
 
     @ManyToOne
     private  Projet projet;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JsonIgnoreProperties(value = { "tasks" }, allowSetters = true)
+    private  User user;
+
+    private String username ;
 
 
     public Long getId() {
@@ -55,13 +64,7 @@ public class Task implements Serializable {
         this.dateCreated = dateCreated;
     }
 
-    public boolean isFinished() {
-        return finished;
-    }
 
-    public void setFinished(boolean finished) {
-        this.finished = finished;
-    }
 
     public Projet getProjet() {
         return projet;
@@ -77,5 +80,29 @@ public class Task implements Serializable {
 
     public void setDateFin(Date dateFin) {
         this.dateFin = dateFin;
+    }
+
+    public EtatTask getEtatTask() {
+        return etatTask;
+    }
+
+    public void setEtatTask(EtatTask etatTask) {
+        this.etatTask = etatTask;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

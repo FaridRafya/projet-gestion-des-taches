@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ITask} from "../task.model";
 import {TaskService} from "../service/task.service";
 import {Router} from "@angular/router";
+import {AuthServiceService} from "../../service/auth-service.service";
 
 @Component({
   selector: 'app-task',
@@ -11,9 +12,11 @@ import {Router} from "@angular/router";
 export class TaskComponent implements OnInit{
 
 
+  scope : any
   taskSharedCollection :ITask[] =[]
 
   constructor(protected taskService : TaskService,
+              protected authservice : AuthServiceService,
               protected router : Router) {
   }
   ngOnInit(): void {
@@ -21,6 +24,13 @@ export class TaskComponent implements OnInit{
       this.taskSharedCollection=value
       console.log("taskCOllection" + this.taskSharedCollection )
     })
+
+    this.scope= this.authservice.userProfile?.scope;
+
+    console.log("scope" +this.scope)
   }
 
+  logout(){
+    this.authservice.logout();
+  }
 }

@@ -5,6 +5,8 @@ import {FormBuilder} from "@angular/forms";
 import {ITask, Task} from "../task.model";
 import {ProjetService} from "../../projets/service/projet.service";
 import {EtatTask} from "../EtatTask";
+import {IUser} from "../../users/user.model";
+import {UserService} from "../../users/service/user.service";
 
 @Component({
   selector: 'app-ajouter',
@@ -17,7 +19,7 @@ export class AjouterComponent implements  OnInit{
   id:any
   data:any
   etatTaskOptions = Object.values(EtatTask);
-
+  userSharedCollections :IUser[]=[]
   editForm = this.fb.group({
     id: [],
     name:  [],
@@ -26,6 +28,7 @@ export class AjouterComponent implements  OnInit{
     dateFin:  [],
     etatTask: [],
     projet: [],
+    username: [],
   });
 
 
@@ -33,6 +36,7 @@ export class AjouterComponent implements  OnInit{
   constructor(private taskService : TaskService,
               protected projetService:ProjetService,
               protected activatedRoute: ActivatedRoute,
+              protected userService :UserService,
               protected fb: FormBuilder,
               protected router :Router
   ) {
@@ -45,8 +49,11 @@ export class AjouterComponent implements  OnInit{
           projet: this.data,
 
         });
-      }
-    )
+      })
+
+    this.userService.getAll().subscribe(value =>{
+      this.userSharedCollections=value
+    })
   } ;
   ngOnInit(): void {
 
@@ -79,6 +86,7 @@ export class AjouterComponent implements  OnInit{
       dateFin: this.editForm.get(['dateFin'])!.value,
       etatTask: this.editForm.get(['etatTask'])!.value,
       projet: this.editForm.get(['projet'])!.value,
+      username:this.editForm.get(['username'])!.value , // Stocker seulement l'identifiant de l'utilisateur
     };
   }
 

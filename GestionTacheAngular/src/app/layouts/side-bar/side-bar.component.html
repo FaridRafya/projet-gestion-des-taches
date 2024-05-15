@@ -95,6 +95,12 @@
             {{menuItem.title}}
           </a>
         </li>
+        <li *ngIf="scope" >
+          <a routerLinkActive="active" (click)="logout()" class="nav-link">
+            <i class="ni avatar-lg"></i>
+           logout
+          </a>
+        </li>
       </ul>
       <!-- Divider -->
       <hr class="my-3">

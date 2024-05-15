@@ -13,9 +13,12 @@ import { RegisterComponent } from './public/register/register.component';
 import { AjouterProjetComponent } from './projets/ajouter-projet/ajouter-projet.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { AjouterComponent } from './tasks/ajouter/ajouter.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { DetailProjetComponent } from './projets/detail-projet/detail-projet.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {JwtInterceptor} from "@auth0/angular-jwt";
+import { MyDashboardComponent } from './my-dashboard/my-dashboard.component';
+import { UserlistComponent } from './users/userlist/userlist.component';
 
 @NgModule({
   declarations: [
@@ -30,14 +33,22 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AjouterProjetComponent,
     AjouterComponent,
     DetailProjetComponent,
-    DashboardComponent
+    DashboardComponent,
+    MyDashboardComponent,
+    UserlistComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,HttpClientModule
   ],
-  providers: [],
+  providers: [
+
+/*
+    {provide:HTTP_INTERCEPTORS, useClass:JwtInterceptor, multi:true}
+*/
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
 package com.gestiontache.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -15,7 +16,8 @@ public class Projet implements Serializable {
     private String name ;
     private String description;
 
-    @OneToMany
+    @OneToMany(mappedBy = "projet",cascade = CascadeType.ALL)
+    @JsonIgnoreProperties(value = { "projet" }, allowSetters = true)
     private Set<Task> tasks = new HashSet<>() ;
 
 

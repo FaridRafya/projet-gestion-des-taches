@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit{
         this.idToken = response;
 
         this.authservice.authenticateUser(this.idToken, undefined);
-        this.router.navigateByUrl("task");
+        this.router.navigateByUrl("admin/dashboared");
 
         /*this.authservice.loadUserProfile().subscribe({
 

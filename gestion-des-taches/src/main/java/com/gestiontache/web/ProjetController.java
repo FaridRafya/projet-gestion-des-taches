@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.awt.print.Pageable;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin("*")
 public class ProjetController {
 
 
@@ -35,5 +37,11 @@ public class ProjetController {
         List<Projet> projets=  projetService.findAll();
         return  ResponseEntity.ok().body(projets);
     }
+
+
+    @GetMapping("/projet/{id}")
+    public  ResponseEntity<Projet> getProjetById(@PathVariable Long id ){
+        Optional<Projet> projet=  projetService.findOne(id);
+        return new ResponseEntity<>(projet.get(),HttpStatus.OK);    }
 
 }

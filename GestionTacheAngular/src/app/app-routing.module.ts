@@ -9,17 +9,27 @@ import {AjouterComponent} from "./tasks/ajouter/ajouter.component";
 import {AjouterProjetComponent} from "./projets/ajouter-projet/ajouter-projet.component";
 import {DetailProjetComponent} from "./projets/detail-projet/detail-projet.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
+import {AuthorisationGuard} from "./guards/authorisation.guard";
+import {AuthorisationByRoleGuard} from "./guards/authorisation-by-role.guard";
+import {UserlistComponent} from "./users/userlist/userlist.component";
+import {MyDashboardComponent} from "./my-dashboard/my-dashboard.component";
 
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'dashboared', component: DashboardComponent },
-  { path: 'task', component: TaskComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'task/add/:id', component: AjouterComponent  },
-  { path: 'projet/add', component: AjouterProjetComponent  },
-  { path: 'projet/:id', component: DetailProjetComponent  },
-  { path: 'projet', component: ProjetComponent },
+  { path: '', component: LoginComponent },
+
+
+  {path : "admin", component : DashboardComponent, canActivate :[AuthorisationGuard], canActivateChild:[AuthorisationByRoleGuard], children : [
+      { path: 'register', component: RegisterComponent , data : {roles : ['*']}},
+      { path: 'dashboared', component: MyDashboardComponent , data : {roles : ['*']}},
+
+      {path : "projet", component : ProjetComponent , data : {roles : ['*']}},
+      {path : "users", component : UserlistComponent , data : {roles : ['*']}},
+      {path : "task", component : TaskComponent, data : {roles : ['*']}},
+      { path: 'task/add/:id', component: AjouterComponent  , data : {roles : ['*']}},
+      { path: 'projet/add', component: AjouterProjetComponent  , data : {roles : ['*']}},
+      { path: 'projet/:id', component: DetailProjetComponent  , data : {roles : ['*']}},
+    ]},
   /*{ path: '', redirectTo: '/component1', pathMatch: 'full' }*/
 ];
 

@@ -26,6 +26,7 @@ export class RegisterComponent implements OnInit{
       email : this.fb.control('', Validators.required),
       password : this.fb.control('', Validators.required),
       confirmPassword : this.fb.control('', Validators.required),
+      role : this.fb.control('', Validators.required),
     });
   }
 
@@ -46,6 +47,9 @@ export class RegisterComponent implements OnInit{
   }
   get confirmPassword() {
     return this.registrationFormGroup.controls['confirmPassword'];
+  }
+  get role() {
+    return this.registrationFormGroup.controls['role'];
   }
   get userType() {
     return this.registrationFormGroup.controls['userType'];

@@ -97,8 +97,8 @@
   <div class="row">
     <div class="col">
       <div class="card shadow">
-        <div class="card-header border-0">
-          <button type="button" [routerLink]="['/task/add']" class="btn btn-primary my-4">
+        <div class="card-header border-0" *ngIf="scope=='ADMIN'">
+          <button type="button" [routerLink]="['/admin/task/add']" class="btn btn-primary my-4">
             ajouter task
           </button>
           <h3 class="mb-0">Tables Task </h3>

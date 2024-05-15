@@ -14,12 +14,11 @@ import java.util.Set;
 public class Role implements Serializable {
 
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique = true)
     private String roleName;
 
-    @ManyToMany
-   private Set<User> users = new HashSet<>() ;
 }

@@ -1,4 +1,5 @@
 import {IProjet} from "../projets/projet.model";
+import {IUser} from "../users/user.model";
 
 export interface ITask  {
   id?: number;
@@ -7,7 +8,10 @@ export interface ITask  {
   dateCreated?: Date;
   dateFin?: Date;
   etatTask?:string;
-  projet?: IProjet
+  projet?: IProjet;
+  user?:IUser | null;
+  username?: string ;
+
 
 }
 
@@ -18,7 +22,9 @@ export class Task  implements ITask {
               public dateCreated?: Date,
               public dateFin?: Date,
               public etatTask ?: string,
-              public projet ?: IProjet
+              public projet ?: IProjet,
+              public user ?:IUser | null,
+              public username?: string,
 
   ) {}
 }

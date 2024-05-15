@@ -34,5 +34,8 @@ export class TaskService {
   finda(id: number): Observable<ITask> {
     return this.http.get<ITask>(`${this.resourceUrl}/${id}`);
   }
+  findByUser(username: any): Observable<ITask[]> {
+    return this.http.get<ITask[]>(`${this.resourceUrl}/etat/${username}`);
+  }
 
 }

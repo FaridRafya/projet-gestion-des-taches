@@ -38,7 +38,7 @@ export class AjouterProjetComponent implements  OnInit{
     const projet = this.createFromForm();
     this.projetService.create(projet).subscribe({
 
-      next:()=>this.router.navigateByUrl("/projet"),
+      next:()=>this.router.navigateByUrl("/admin/projet"),
       error:()=> console.log("error")
     });
 

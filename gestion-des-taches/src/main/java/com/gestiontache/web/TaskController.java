@@ -18,11 +18,13 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin("*")
 public class TaskController {
 
     private TaskService taskService;
 
     public TaskController(TaskService taskService) {
+
         this.taskService = taskService;
     }
 
@@ -38,8 +40,30 @@ public class TaskController {
     }
 
     @GetMapping("/task")
-    public ResponseEntity<List<Task>> getTask( ) {
+    public ResponseEntity<List<Task>> getAllTask( ) {
        List<Task> page = taskService.findAll();
+        return ResponseEntity.ok().body(page);
+    }
+
+
+    @GetMapping("/task/etat/{username}")
+    public ResponseEntity<List<Task>> getTaskByusername(@PathVariable String username) {
+        try {
+            List<Task> page = taskService.findByUserName(username);
+            return ResponseEntity.ok().body(page);
+        } catch (IllegalArgumentException e) {
+            // Gérer le cas où l'état n'est pas valide
+            return ResponseEntity.badRequest().build();
+        } catch (Exception e) {
+            // Gérer d'autres exceptions
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+
+    @GetMapping("/task/projet/{id}")
+    public ResponseEntity<List<Task>> getTaskByProjet(@PathVariable Long id) {
+        List<Task> page = taskService.findAllByProjet(id);
         return ResponseEntity.ok().body(page);
     }
 

@@ -16,7 +16,10 @@ public interface TaskService {
 
 
     List<Task> findAll( ) ;
+    List<Task> findAllByProjet(Long id ) ;
 
+    List<Task> findByEtat(String etat) ;
+    List<Task> findByUserName(String username) ;
     /**
      * Get the "id" Task.
      *
