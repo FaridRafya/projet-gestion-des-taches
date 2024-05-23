@@ -30,10 +30,8 @@ public class TaskServiceimpl implements TaskService {
     }
 
     @Override
-    public Task update(Task task) throws Exception {
-        if (!taskRepository.existsById(task.getId())) {
-            throw new Exception("entity not found");
-        }
+    public Task update(Task task)  {
+
         task = taskRepository.save(task);
         return task;
     }

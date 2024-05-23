@@ -45,12 +45,9 @@ export class DetailProjetComponent implements OnInit {
 
 
   ngOnInit(): void {
-
     this.activatedRoute.paramMap.subscribe(value => {
       this.id = value.get('id');
-    this.handlerSearchProjet();
-    //  this.taskService.getByProjet(this.id).subscribe()
-
+      this.handlerSearchProjet();
     })
 
   }

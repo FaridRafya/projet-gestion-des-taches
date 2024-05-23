@@ -17,6 +17,10 @@ export class TaskService {
     return this.http.post<ITask>(this.resourceUrl, task);
   }
 
+
+  update(task :ITask): Observable<ITask> {
+    return this.http.put<ITask>(this.resourceUrl, task);
+  }
   getAll():Observable<ITask[]>{
     return  this.http.get<ITask[]>(this.resourceUrl)  ;
   }

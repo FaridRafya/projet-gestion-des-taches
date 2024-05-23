@@ -19,6 +19,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {JwtInterceptor} from "@auth0/angular-jwt";
 import { MyDashboardComponent } from './my-dashboard/my-dashboard.component';
 import { UserlistComponent } from './users/userlist/userlist.component';
+import { DetailComponent } from './tasks/detail/detail.component';
+import { UpdateComponent } from './tasks/update/update.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { UserlistComponent } from './users/userlist/userlist.component';
     DetailProjetComponent,
     DashboardComponent,
     MyDashboardComponent,
-    UserlistComponent
+    UserlistComponent,
+    DetailComponent,
+    UpdateComponent
   ],
   imports: [
     BrowserModule,

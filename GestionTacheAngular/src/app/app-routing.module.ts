@@ -13,6 +13,7 @@ import {AuthorisationGuard} from "./guards/authorisation.guard";
 import {AuthorisationByRoleGuard} from "./guards/authorisation-by-role.guard";
 import {UserlistComponent} from "./users/userlist/userlist.component";
 import {MyDashboardComponent} from "./my-dashboard/my-dashboard.component";
+import {UpdateComponent} from "./tasks/update/update.component";
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
       {path : "projet", component : ProjetComponent , data : {roles : ['*']}},
       {path : "users", component : UserlistComponent , data : {roles : ['*']}},
       {path : "task", component : TaskComponent, data : {roles : ['*']}},
+      {path : "task/edit/:id", component : UpdateComponent, data : {roles : ['*']}},
       { path: 'task/add/:id', component: AjouterComponent  , data : {roles : ['*']}},
       { path: 'projet/add', component: AjouterProjetComponent  , data : {roles : ['*']}},
       { path: 'projet/:id', component: DetailProjetComponent  , data : {roles : ['*']}},

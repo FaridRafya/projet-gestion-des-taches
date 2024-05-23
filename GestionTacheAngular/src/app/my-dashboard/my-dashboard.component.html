@@ -2,7 +2,6 @@
   <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
     <div class="container-fluid">
       <div class="header-body">
-        &lt;!&ndash; Card stats &ndash;&gt;
         <div class="row">
           <div class="col-xl-3 col-lg-6">
 
@@ -23,7 +22,7 @@
                   <span class="text-nowrap">en attente </span>
                 </p>
                 <div *ngFor="let task of taskShaeredCollection">
-                  <div *ngIf="task.etatTask=='EN_ATTENTE'">{{task.name}}</div>
+                  <a  [routerLink]="['/admin/task/edit', task.id]"  *ngIf="task.etatTask=='EN_ATTENTE'">{{task.name}}</a>
                 </div>
               </div>
             </div>
@@ -47,7 +46,7 @@
                   <span class="text-nowrap">en cours</span>
                 </p>
                 <div *ngFor="let task of taskShaeredCollection">
-                  <div *ngIf="task.etatTask=='EN_COURS'">{{task.name}}</div>
+                  <a  [routerLink]="['/admin/task/edit', task.id]" *ngIf="task.etatTask=='EN_COURS'">{{task.name}}</a>
                 </div>
               </div>
             </div>
@@ -71,7 +70,7 @@
                   <span class="text-nowrap">termines</span>
                 </p>
                 <div *ngFor="let task of taskShaeredCollection">
-                  <div *ngIf="task.etatTask=='TERMINE'">{{task.name}}</div>
+                  <a  [routerLink]="['/admin/task/edit', task.id]"  *ngIf="task.etatTask=='TERMINE'">{{task.name}}</a>
                 </div>
               </div>
             </div>
@@ -95,7 +94,7 @@
                   <span class="text-nowrap">livraison</span>
                 </p>
                 <div *ngFor="let task of taskShaeredCollection">
-                  <div *ngIf="task.etatTask=='LIVRAISON'">{{task.name}}</div>
+                  <a  [routerLink]="['/admin/task/edit', task.id]" *ngIf="task.etatTask=='LIVRAISON'">{{task.name}}</a>
                 </div>
               </div>
             </div>

@@ -39,6 +39,11 @@ public class TaskController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+    @PutMapping("/task/id")
+    public ResponseEntity<Task> update(@PathVariable Long id, @RequestBody Task task) {
+        Task  result = taskService.update(task);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
     @GetMapping("/task")
     public ResponseEntity<List<Task>> getAllTask( ) {
        List<Task> page = taskService.findAll();

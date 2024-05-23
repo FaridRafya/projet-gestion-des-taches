@@ -68,7 +68,7 @@ public class SecurityController {
     @PostMapping("/public/auth")
     public ResponseEntity<Map<String,String>> auth(AuthRequestDTO authRequestDTO , HttpServletRequest request){
         String username = authRequestDTO.username();
-        String granType = authRequestDTO.grantType();
+        String granType = "password";
 
         if (granType == null)
             return new ResponseEntity<>(Map.of("errorMessage", "grantType is required"), HttpStatus.UNAUTHORIZED);
@@ -78,17 +78,10 @@ public class SecurityController {
                     new UsernamePasswordAuthenticationToken(username, authRequestDTO.password()));
             username = authentication.getName();
         }
-        else if (granType.equals("refreshToken")){
-            if (authRequestDTO.refreshToken()==null) return new ResponseEntity<>(Map.of("error message ","refreshToken is required"), HttpStatus.UNAUTHORIZED);
-            Jwt decodedRefreshToken = null;
-            decodedRefreshToken = jwtDecoder.decode(authRequestDTO.refreshToken());
-            username = decodedRefreshToken.getClaim("username");
-
-
-        } else {
+         else {
             return new ResponseEntity<>(Map.of("errorMessage", String.format("GrantType %s not supported", granType)), HttpStatus.UNAUTHORIZED);
         }
-        Map<String, String> idToken = authenticationService.generateToken(username, authRequestDTO.withRefreshToken());
+        Map<String, String> idToken = authenticationService.generateToken(username, false);
         return ResponseEntity.ok(idToken);
 
 

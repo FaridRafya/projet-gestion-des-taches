@@ -12,7 +12,7 @@ public interface TaskService {
 
     Task save(Task task) ;
 
-    Task update(Task task) throws Exception;
+    Task update(Task task) ;
 
 
     List<Task> findAll( ) ;
